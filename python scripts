@@ -1,0 +1,86 @@
+# azure_devops_python_scripts.py
+
+"""
+A collection of Python scripts to automate common Azure DevOps tasks for DevOps engineers.
+Make sure to replace placeholders like {org}, {project}, {pipeline_id}, and PAT_TOKEN with actual values.
+"""
+
+import requests
+import datetime
+import yaml
+import subprocess
+import os
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.resource import ResourceManagementClient
+
+# 1. List Azure DevOps Projects
+def list_projects():
+    url = "https://dev.azure.com/{org}/_apis/projects?api-version=6.0"
+    response = requests.get(url, auth=("", "PAT_TOKEN"))
+    return response.json()
+
+# 2. Trigger Azure Pipeline
+def trigger_pipeline(pipeline_id):
+    url = f"https://dev.azure.com/{{org}}/{{project}}/_apis/pipelines/{pipeline_id}/runs?api-version=6.0-preview.1"
+    payload = {"resources": {"repositories": {"self": {"refName": "refs/heads/main"}}}}
+    response = requests.post(url, json=payload, auth=("", "PAT_TOKEN"))
+    return response.json()
+
+# 3. Monitor Pipeline Status
+def get_pipeline_status(pipeline_id):
+    url = f"https://dev.azure.com/{{org}}/{{project}}/_apis/build/builds?definitions={pipeline_id}&$top=1&api-version=6.0"
+    response = requests.get(url, auth=("", "PAT_TOKEN"))
+    return response.json()['value'][0]['status']
+
+# 4. Send Teams Notification
+def send_teams_message(webhook_url, text):
+    message = {"text": text}
+    requests.post(webhook_url, json=message)
+
+# 5. Create Work Item
+def create_work_item(title):
+    url = f"https://dev.azure.com/{{org}}/{{project}}/_apis/wit/workitems/$Task?api-version=6.0"
+    headers = {"Content-Type": "application/json-patch+json"}
+    payload = [{"op": "add", "path": "/fields/System.Title", "value": title}]
+    requests.post(url, json=payload, headers=headers, auth=("", "PAT_TOKEN"))
+
+# 6. Auto Increment Version in YAML
+def bump_yaml_version(file_path):
+    with open(file_path, "r+") as f:
+        lines = f.readlines()
+        for i, line in enumerate(lines):
+            if "version:" in line:
+                version = line.split(":")[1].strip()
+                major, minor, patch = map(int, version.split('.'))
+                lines[i] = f"version: {major}.{minor}.{patch+1}\n"
+        f.seek(0)
+        f.writelines(lines)
+
+# 7. Create Azure Resource Group
+def create_resource_group():
+    credential = DefaultAzureCredential()
+    client = ResourceManagementClient(credential, "<subscription_id>")
+    client.resource_groups.create_or_update("myResourceGroup", {"location": "eastus"})
+
+# 8. Validate YAML
+def validate_yaml(file_path):
+    with open(file_path) as f:
+        try:
+            yaml.safe_load(f)
+            print("YAML is valid")
+        except yaml.YAMLError as e:
+            print("Invalid YAML:", e)
+
+# 9. Tag Docker Image
+def tag_docker_image(image):
+    tag = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    subprocess.run(["docker", "tag", image, f"myregistry.azurecr.io/{image}:{tag}"])
+
+# 10. Clone and Mirror Git Repo
+def mirror_repo(source_url, target_url):
+    os.system(f"git clone {source_url} repo_temp")
+    os.chdir("repo_temp")
+    os.system(f"git remote add mirror {target_url}")
+    os.system("git push mirror --all")
+    os.chdir("..")
+    os.system("rm -rf repo_temp")
