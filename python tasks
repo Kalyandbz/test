@@ -1,0 +1,92 @@
+Python Practice Tasks for Azure DevOps Engineer
+
+
+Phase 1: Python Fundamentals
+1. Print 'Hello Azure DevOps!' to the screen.
+2. Take user input and print it back.
+3. Create a list of Azure regions and print each item using a loop.
+4. Write a function to check if a number is even or odd.
+5. Create a dictionary of Azure resources (e.g., VM: 'running', Storage: 'available').
+6. Use conditional logic to compare two numbers.
+7. Write a loop that prints numbers 1 to 100.
+8. Create a function that returns the square of a number.
+9. Use *args to sum any number of values.
+10. Use **kwargs to display key-value pairs.
+11. Create a program that reads and prints content from a .txt file.
+12. Append a new line to an existing file.
+13. Create a program that reads a JSON file and prints keys.
+14. Create a tuple and try modifying it (expect an error).
+15. Use a while loop to print characters in a string one by one.
+16. Catch a division-by-zero exception.
+17. Create a list comprehension to filter odd numbers from a list.
+18. Create a simple calculator using functions.
+19. Count word frequency in a string.
+20. Create a Python script that takes command-line arguments using sys.argv.
+
+
+Phase 2: Scripting & Automation
+1. Write a script that creates a new directory and file using os.
+2. Move all .log files from one folder to another using shutil.
+3. Recursively find .yaml files using glob.
+4. Use subprocess to run ls or dir and capture the output.
+5. Run an external Python script from another script.
+6. Use regex to extract all email addresses from a text file.
+7. Parse a log file and extract lines with 'ERROR'.
+8. Read a .json configuration file and display a specific key.
+9. Modify a .yaml file and save changes.
+10. Create a backup of a folder daily using schedule.
+11. Schedule a script to run every 5 minutes (demo with while + time.sleep()).
+12. Use subprocess to run az login and print the result.
+13. Delete files older than 7 days from a folder.
+14. Zip and unzip a directory using zipfile.
+15. Write a script to monitor free disk space.
+16. Write a Python script to start/stop a local service.
+17. Automate renaming files with today's date.
+18. Script to send a notification/email when a file is changed.
+19. Parse command-line flags using argparse.
+20. Create a script that pings a list of servers and logs results.
+
+Phase 3: Azure DevOps Automation
+1. Install the Azure Python SDK (pip install azure-mgmt-resource).
+2. Use subprocess to deploy a resource group with az group create.
+3. Authenticate with a personal access token (PAT) using requests.
+4. List all Azure DevOps projects using REST API.
+5. Create a new Azure DevOps repo using Python and the API.
+6. Add a new file to a repo using the API.
+7. Trigger a pipeline run with REST API and print the result.
+8. Monitor a pipeline’s status until it completes.
+9. List all build artifacts of a specific pipeline.
+10. Write a script to create a new Azure DevOps work item (bug/task).
+11. Fetch all work items assigned to a user.
+12. Use Azure SDK to list all VMs in a subscription.
+13. Start/stop an Azure VM using Python.
+14. Upload a file to Azure Blob Storage.
+15. Download logs from a blob and parse them.
+16. Write a script to tag resources based on a JSON config.
+17. Automate the creation of a storage account via SDK.
+18. Parse a pipeline YAML file to update a version number.
+19. Create a resource lock using Python SDK.
+20. Build a CLI tool to manage Azure DevOps tasks (create, list, delete).
+
+
+Phase 4: DevOps Tools Integration
+1. Create a script to run terraform plan and capture output.
+2. Parse .tf files to find resource names using regex.
+3. Write a Python script to validate all .yaml pipeline files in a folder.
+4. Generate a report from Jenkins build logs.
+5. Integrate a Python test script into a GitHub Actions pipeline.
+6. Use Python to query Prometheus API and display CPU usage.
+7. Write a script to update Grafana dashboard JSON and re-upload it.
+8. Test REST API response time and alert if above threshold.
+9. Convert a .json ARM template to readable .yaml using Python.
+10. Write unit tests for a script that manipulates Azure resources.
+11. Create a script that checks required variables are defined in .tfvars.
+12. Auto-generate Markdown docs from pipeline YAML using Python.
+13. Validate Azure Policies via script before deployment.
+14. Create a Python CLI using argparse for custom deployment tasks.
+15. Script to rotate logs and keep only last 5 days.
+16. Write a wrapper script to manage deployment secrets.
+17. Send a custom Slack or Teams alert when a job fails.
+18. Export pipeline run results to CSV using the API.
+19. Test a Docker container's health via Python script.
+20. Generate graphs from CI/CD job duration using matplotlib.
