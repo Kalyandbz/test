@@ -1,0 +1,46 @@
+azure-pipelines.yml
+├── trigger
+│   ├── branches
+│   │   └── include
+│   │       └── main
+│   └── paths
+│       └── include
+│           └── terraform/**
+│
+├── variables
+│   ├── TF_VERSION
+│   └── TF_WORKING_DIR
+│
+└── stages
+    ├── Terraform_Init_Validate
+    │   ├── displayName
+    │   └── jobs
+    │       └── InitValidate
+    │           ├── pool
+    │           │   └── vmImage
+    │           └── steps
+    │               ├── UseTerraform@0
+    │               └── script: terraform init & validate
+    │
+    ├── Terraform_Plan
+    │   ├── displayName
+    │   ├── dependsOn: Terraform_Init_Validate
+    │   └── jobs
+    │       └── Plan
+    │           ├── pool
+    │           └── steps
+    │               ├── UseTerraform@0
+    │               ├── script: terraform plan
+    │               └── PublishPipelineArtifact@1
+    │
+    └── Terraform_Apply
+        ├── displayName
+        ├── dependsOn: Terraform_Plan
+        ├── condition: only apply on main
+        └── jobs
+            └── Apply
+                ├── pool
+                └── steps
+                    ├── download: tfplan
+                    ├── UseTerraform@0
+                    └── script: terraform apply
