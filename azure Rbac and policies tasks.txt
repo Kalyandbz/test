@@ -1,0 +1,72 @@
+🔹 Level 1 – Beginner: Basic Concepts & Core Operations
+Goal: Get comfortable with essential RBAC & Policy commands using Portal, PowerShell, and CLI.
+
+List all built-in roles using CLI and PowerShell.
+
+Identify the role assignments at subscription and resource group levels.
+
+Assign the Reader role to a user at the subscription level via Portal.
+
+Assign the Contributor role to a service principal at the resource group level using CLI.
+
+Remove an RBAC role assignment using PowerShell.
+
+Create a custom role definition (read-only VM access) using JSON.
+
+Assign your custom role to a user using CLI.
+
+List all policies available in Azure Policy using CLI.
+
+Assign a built-in policy like “Audit VMs without managed disks” at resource group level via Portal.
+
+Check compliance results for a policy assignment using PowerShell.
+
+-------------------------------------------------------------------
+
+🔸 Level 2 – Practitioner: Custom Definitions & Scoped Assignments
+Goal: Work with custom roles and policy definitions across different scopes.
+
+Create a custom RBAC role allowing only Virtual Network management.
+
+Assign the custom RBAC role at a specific resource level (e.g., a single VNet).
+
+Create a policy definition to enforce tagging (e.g., "Environment" = "Dev").
+
+Assign the tagging policy at the resource group level via PowerShell.
+
+Deploy a resource without tags and observe policy compliance.
+
+Remediate non-compliant resources using a remediation task.
+
+List and filter policy assignments by scope using CLI.
+
+Deny creation of specific SKUs (e.g., prevent Standard_D2_v2 VMs) with a custom policy.
+
+Create an initiative (policy set) combining 2-3 related policies.
+
+Assign the initiative at the subscription level and verify compliance.
+
+---------------------------------------
+
+🔶 Level 3 – Intermediate: Automation & Real-world Scenarios
+Goal: Build automation workflows and simulate real-world security/compliance scenarios.
+
+Automate RBAC assignment using a PowerShell script for new users.
+
+Write a CLI script to assign and remove roles for a service principal.
+
+Build a CI/CD flow (using Azure DevOps) to apply a custom role JSON from GitHub.
+
+Design a policy that denies unencrypted storage accounts.
+
+Assign the policy and test by deploying a non-compliant storage account.
+
+Set up an alert or action group for non-compliance using Azure Monitor.
+
+Export all current role assignments and policy definitions to a CSV report.
+
+Create a policy definition to enforce specific location constraints (e.g., only deploy to West Europe).
+
+Audit policy effect changes and understand “AuditIfNotExists” vs “Deny”.
+
+Simulate a compliance audit by analyzing policy and RBAC assignments for gaps.
