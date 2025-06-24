@@ -1,0 +1,139 @@
+Here's a structured **5-Level Azure Terraform IaC learning roadmap** with **20 tasks per level**, focusing on real-time deployment and integration of the following services: **Resource Groups, Storage Accounts, Web Apps, Virtual Networks, Azure Container Registry (ACR), AKS, SQL Server, SQL Database, and Managed Identities**.
+
+---
+
+## ✅ **Level 1 – Beginner (Terraform Basics + Azure Init)**
+
+**Goal:** Understand Terraform syntax, set up Azure provider, and create basic resources.
+
+1. Install Terraform and configure it on your system
+2. Create a new Terraform project with a `.tf` file
+3. Initialize Terraform with Azure provider (`azurerm`)
+4. Configure authentication using Azure CLI
+5. Write code to create a Resource Group
+6. Add variables for location and name
+7. Use `terraform plan`, `apply`, and `destroy`
+8. Create a basic Storage Account
+9. Add tags to your resources
+10. Use `terraform.tfvars` to separate values
+11. Organize code using `main.tf`, `variables.tf`, and `outputs.tf`
+12. Create a basic Virtual Network
+13. Add a subnet to the Virtual Network
+14. Create a Public IP and Network Interface
+15. Understand the Terraform state file
+16. Use `terraform output` to get values
+17. Add a lock to state file using Azure Storage backend
+18. Create a basic Web App Plan
+19. Deploy an App Service (Web App)
+20. Destroy and recreate infrastructure to see changes
+
+---
+
+## ✅ **Level 2 – Intermediate (Modules, Dependencies, and Secrets)**
+
+**Goal:** Use modules, handle secrets, and build connections between services.
+
+1. Break your project into modules (e.g., RG module, Storage module)
+2. Pass variables into modules and use outputs
+3. Reference outputs between modules
+4. Use Terraform `depends_on` to manage resource dependency
+5. Store secrets using `locals` securely
+6. Use Key Vault to store secrets (manually for now)
+7. Use `data` blocks to fetch existing resources
+8. Create an ACR (Azure Container Registry)
+9. Integrate ACR with Web App using identity
+10. Use lifecycle blocks (create\_before\_destroy)
+11. Import existing Azure resources into Terraform
+12. Add `count` and `for_each` to create multiple subnets
+13. Use `terraform fmt` and `validate`
+14. Create Application Insights and connect with Web App
+15. Store Terraform state in Azure Storage Account (Remote Backend)
+16. Use `output` from one resource as input to another
+17. Create a user-assigned Managed Identity
+18. Assign identity to Web App
+19. Grant identity access to Storage Account
+20. Test access from Web App to Storage using Identity
+
+---
+
+## ✅ **Level 3 – Advanced (SQL, Networking, and AKS Basics)**
+
+**Goal:** Create complex resources, introduce databases and start container workloads.
+
+1. Deploy an Azure SQL Server using Terraform
+2. Deploy an Azure SQL Database under the server
+3. Set an admin login and password using secrets
+4. Whitelist your IP using a firewall rule
+5. Create a VNet with multiple subnets
+6. Associate Web App with VNet using VNet integration
+7. Enable Private Endpoint for Storage Account
+8. Create an AKS Cluster
+9. Configure Node Pool and Version
+10. Attach ACR to AKS using service principal
+11. Deploy sample app to AKS using Helm
+12. Create Kubernetes ConfigMap and Secrets from Terraform
+13. Add DNS label to AKS public IP
+14. Set AKS RBAC using AAD integration (basic)
+15. Create Private DNS Zone for AKS
+16. Use Terraform `data` to reference container image from ACR
+17. Use Managed Identity in AKS to access SQL DB
+18. Use subnet delegation for AKS and Web Apps
+19. Automate environment setup using `env.tfvars` files
+20. Define conditional resources with `count` + `var.enable_feature`
+
+---
+
+## ✅ **Level 4 – Proficient (Security, Integration, Automation)**
+
+**Goal:** Harden security, automate deployments, and create full integrations.
+
+1. Use Azure Key Vault with Terraform and fetch secrets
+2. Assign Key Vault access policies to Managed Identities
+3. Setup Azure Monitor Alerts for Web App
+4. Configure Diagnostic Settings on Storage and Web Apps
+5. Enable logging and diagnostics for SQL Server
+6. Automate Terraform Plan/Apply with GitHub Actions
+7. Use `azurerm_role_assignment` to assign RBAC roles
+8. Create a role assignment for AKS MI to pull from ACR
+9. Assign SQL DB Contributor role to Web App MI
+10. Secure Web App with Private Endpoint
+11. Use NSGs to restrict traffic to Subnets
+12. Create Recovery Services Vault for backup
+13. Enable soft delete on Storage Account and SQL
+14. Create multiple environments (dev, test, prod)
+15. Create reusable Terraform modules with versioning
+16. Store modules in GitHub and use in project
+17. Use conditional expressions for resource targeting
+18. Enable customer-managed keys for Storage
+19. Connect SQL DB to VNet using Private Endpoint
+20. Tag resources with environment, owner, cost-center
+
+---
+
+## ✅ **Level 5 – Expert (Enterprise-Scale, DR, Governance)**
+
+**Goal:** Implement enterprise-scale IaC practices with security, DR, and scaling.
+
+1. Build a fully automated multi-tier architecture (Web App + SQL + Storage)
+2. Use advanced for\_each + dynamic blocks for complex configs
+3. Deploy and scale AKS cluster with node pools and autoscaling
+4. Use availability zones for high availability
+5. Enable geo-replication on Storage and SQL
+6. Use Azure Policy to enforce tag governance
+7. Integrate with Azure Blueprints (IaC templates)
+8. Create module registry for reuse within organization
+9. Implement Terraform workspaces for environment isolation
+10. Use Azure DevOps Pipeline for Terraform CI/CD
+11. Perform drift detection with `terraform plan` in automation
+12. Add disaster recovery plan with failover (geo-replication)
+13. Automate alerts and remediation using Terraform and Logic Apps
+14. Connect AKS with Private DNS + Core VNet
+15. Harden all identities using Managed Identity and minimum RBAC
+16. Track cost using Azure Cost Management APIs
+17. Create data-in-motion and data-at-rest encryption policies
+18. Create Terraform wrapper script for consistency
+19. Implement a complete zero-downtime deployment pipeline
+20. Conduct security audit using Terraform compliance tools (e.g., `tfsec`, `checkov`)
+
+---
+
